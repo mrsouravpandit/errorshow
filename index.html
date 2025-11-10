@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    /* WhatsApp-style red popup */
+    .popup {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff4d4d;
+      color: white;
+      border-radius: 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      padding: 15px 30px;
+      text-align: center;
+      transition: top 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
+      z-index: 1000;
+      font-size: 15px;
+      position: fixed;
+    }
+
+    /* Add message tail (like WhatsApp bubble) */
+    .popup::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 40px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #ff4d4d transparent transparent transparent;
+    }
+
+    .popup.show {
+      top: 40px;
+      opacity: 1;
+    }
+
+    .popup h3 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    .popup p {
+      margin: 5px 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 15px;
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+      opacity: 0.8;
+    }
+
+    .close-btn:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="showPopup()">Login</button>
+  </div>
+
+  <!-- Stylish WhatsApp-like red popup -->
+  <div class="popup" id="errorPopup">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h3>❌ Invalid User</h3>
+    <p>Please check your username or password.</p>
+  </div>
+
+  <script>
+    function showPopup() {
+      const popup = document.getElementById('errorPopup');
+      popup.classList.add('show');
+
+      // Optional: auto-hide after 3 seconds
+      setTimeout(() => {
+        popup.classList.remove('show');
+      }, 10000);
+    }
+
+    function closePopup() {
+      const popup = document.getElementById('errorPopup');
+      popup.classList.remove('show');
+    }
+  </script>
+</body>
+</html>
