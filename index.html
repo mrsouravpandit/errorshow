@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +15,6 @@
       height: 100vh;
       margin: 0;
       overflow: hidden;
-
     }
 
     .login-container {
@@ -28,8 +28,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h2 {
@@ -69,10 +76,10 @@
       background: #5a67d8;
     }
 
-    /* WhatsApp-style red popup */
+    /* WhatsApp-style popup with top-right tail */
     .popup {
       position: fixed;
-      top: -120px;
+      top: -150px;
       left: 50%;
       transform: translateX(-50%);
       background: #ff4d4d;
@@ -88,20 +95,20 @@
       position: fixed;
     }
 
-    /* Add message tail (like WhatsApp bubble) */
-    .popup::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 40px;
-      border-width: 10px 10px 0;
-      border-style: solid;
-      border-color: #ff4d4d transparent transparent transparent;
-    }
-
     .popup.show {
       top: 40px;
       opacity: 1;
+    }
+
+    /* Tail at top-right corner */
+    .popup::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      right: 25px;
+      border-width: 0 10px 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent #ff4d4d transparent;
     }
 
     .popup h3 {
@@ -132,6 +139,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="login-container">
     <h2>Login</h2>
@@ -140,7 +148,7 @@
     <button onclick="showPopup()">Login</button>
   </div>
 
-  <!-- Stylish WhatsApp-like red popup -->
+  <!-- Stylish top popup -->
   <div class="popup" id="errorPopup">
     <span class="close-btn" onclick="closePopup()">&times;</span>
     <h3>❌ Invalid User</h3>
@@ -152,10 +160,10 @@
       const popup = document.getElementById('errorPopup');
       popup.classList.add('show');
 
-      // Optional: auto-hide after 3 seconds
+      // Auto-hide after 3 seconds
       setTimeout(() => {
         popup.classList.remove('show');
-      }, 10000);
+      }, 3000);
     }
 
     function closePopup() {
@@ -164,4 +172,5 @@
     }
   </script>
 </body>
+
 </html>
